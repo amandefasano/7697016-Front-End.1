@@ -39,18 +39,34 @@ for (let i = 0; i < pieces.length; i++) {
   pieceElement.appendChild(stockElement);
 }
 
+//gestion des bouttons
 const boutonTrier = document.querySelector(".btn-trier");
-boutonTrier.addEventListener("click", () => {
+boutonTrier.addEventListener("click", function () {
+  const piecesOrdonnees = Array.from(pieces);
+  piecesOrdonnees.sort(function (a, b) {
+    return a.prix - b.prix;
+  });
+});
+
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+boutonFiltrer.addEventListener("click", function () {
+  const piecesFiltrees = pieces.filter(function (piece) {
+    return piece.prix <= 35;
+  });
+});
+
+const boutonDecroissant = document.querySelector(".btn-decroissant");
+boutonDecroissant.addEventListener("click", function () {
   const piecesOrdonnees = Array.from(pieces);
   piecesOrdonnees.sort(function (a, b) {
     return b.prix - a.prix;
   });
 });
 
-const boutonFiltrer = document.querySelector(".btn-filtrer");
-boutonFiltrer.addEventListener("click", () => {
-  const piecesFiltrees = pieces.filter( (piece) => {
+const boutonNoDescription = document.querySelector(".btn-nodesc");
+
+boutonNoDescription.addEventListener("click", function () {
+  const piecesFiltrees = pieces.filter(function (piece) {
     return piece.description;
   });
-  console.log(piecesFiltrees)
 });
